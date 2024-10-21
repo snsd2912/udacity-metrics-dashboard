@@ -39,3 +39,14 @@ Run the below commands:
 kubectl create -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/${jaeger_version}/deploy/cluster_role.yaml
 kubectl create -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/${jaeger_version}/deploy/cluster_role_binding.yaml
 ```
+
+
+## Install MongoDB
+
+Apply the MongoDB CRDs. Populate the <version> placeholder and run the following kubectl command to deploy your chosen version of the CRDs to your Kubernetes cluster:
+```
+kubectl apply -f https://raw.githubusercontent.com/mongodb/mongodb-enterprise-kubernetes/<version>/crds.yaml
+```
+
+
+
