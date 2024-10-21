@@ -26,21 +26,21 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push Docker image for backend 
-        uses: docker/build-push-action@v5
-        with:
-          context: ./modules/backend
-          file: ./modules/backend/Dockerfile 
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/metrics-dashboard-backend:v1
+      # - name: Build and push Docker image for backend 
+      #   uses: docker/build-push-action@v5
+      #   with:
+      #     context: ./modules/backend
+      #     file: ./modules/backend/Dockerfile 
+      #     push: true
+      #     tags: ${{ secrets.DOCKERHUB_USERNAME }}/metrics-dashboard-backend:v1
       
-      - name: Build and push Docker image for frontend 
-        uses: docker/build-push-action@v5
-        with:
-          context: ./modules/frontend
-          file: ./modules/frontend/Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/metrics-dashboard-frontend:v1
+      # - name: Build and push Docker image for frontend 
+      #   uses: docker/build-push-action@v5
+      #   with:
+      #     context: ./modules/frontend
+      #     file: ./modules/frontend/Dockerfile
+      #     push: true
+      #     tags: ${{ secrets.DOCKERHUB_USERNAME }}/metrics-dashboard-frontend:v1
 
       - name: Build and push Docker image for trial 
         uses: docker/build-push-action@v5
@@ -50,10 +50,10 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/metrics-dashboard-trial:v1
 
-      - name: Build and push Docker image for helloworld 
-        uses: docker/build-push-action@v5
-        with:
-          context: ./modules/helloworld
-          file: ./modules/helloworld/Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/metrics-dashboard-helloworld:v1
+      # - name: Build and push Docker image for helloworld 
+      #   uses: docker/build-push-action@v5
+      #   with:
+      #     context: ./modules/helloworld
+      #     file: ./modules/helloworld/Dockerfile
+      #     push: true
+      #     tags: ${{ secrets.DOCKERHUB_USERNAME }}/metrics-dashboard-helloworld:v1
