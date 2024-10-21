@@ -4,7 +4,7 @@ metadata:
   name: mygateway
 spec:
   selector:
-    istio: ingressgateway # use istio default ingress gateway
+    istio: ingressgateway
   servers:
   - port:
       number: 443
@@ -12,6 +12,6 @@ spec:
       protocol: HTTPS
     tls:
       mode: SIMPLE
-      credentialName: httpbin-credential # must be the same as secret
+      credentialName: httpbin-credential 
     hosts:
     - httpbin.example.com
