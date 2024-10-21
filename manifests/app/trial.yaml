@@ -16,6 +16,7 @@ spec:
       - name: trial
         # We advise you to build, push and use your own image, instead of using instructor's image.
         image: wing0805/metrics-dashboard-trial:v1
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
 ---

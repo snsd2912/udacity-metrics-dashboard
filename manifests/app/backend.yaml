@@ -15,6 +15,7 @@ spec:
       containers:
       - name: backend     
         image: wing0805/metrics-dashboard-backend:v1
+        imagePullPolicy: Always
         ports:
         - containerPort: 8081
 ---

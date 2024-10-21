@@ -48,5 +48,13 @@ Apply the MongoDB CRDs. Populate the <version> placeholder and run the following
 kubectl apply -f https://raw.githubusercontent.com/mongodb/mongodb-enterprise-kubernetes/<version>/crds.yaml
 ```
 
+kubectl get secret example-mongodb-admin-admin -o json | jq -r '.data | with_entries(.value |= @base64d)'
 
+{
+  "connectionString.standard": "mongodb://my-user:YWRtaW4%3D@example-mongodb-0.example-mongodb-svc.default.svc.cluster.local:27017,example-mongodb-1.example-mongodb-svc.default.svc.cluster.local:27017,example-mongodb-2.example-mongodb-svc.default.svc.cluster.local:27017/admin?replicaSet=example-mongodb&ssl=false",
+  "connectionString.standardSrv": "mongodb+srv://my-user:YWRtaW4%3D@example-mongodb-svc.default.svc.cluster.local/admin?replicaSet=example-mongodb&ssl=false",
+  "password": "YWRtaW4=",
+  "username": "my-user"
+}
 
+mongodb://my-user:YWRtaW4%3D@example-mongodb-1.example-mongodb-svc.default.svc.cluster.local:27017
