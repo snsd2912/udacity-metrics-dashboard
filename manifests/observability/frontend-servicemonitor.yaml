@@ -1,0 +1,24 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  annotations:
+    sidecar.jaegertracing.io/inject: "true"
+    prometheus.io/scrape: "true"
+    prometheus.io/path: /metrics
+    prometheus.io/port: metrics
+  name: frontend-monitor
+  namespace: monitoring       # The namespace of your prometheus service
+  labels:
+    release: prometheus       # This label should match the `serviceMonitorSelector` in Prometheus
+    app: frontend
+spec:
+  selector:
+    matchLabels:
+      app: frontend          # Label selector to find the target service
+  namespaceSelector:
+    matchNames:
+      - default               # Namespace of the target service
+  endpoints:
+    - port: metrics           # The port name of the service exposing the metrics
+      path: /metrics          # The path where metrics are exposed
+      interval: 10s           # Scrape interval

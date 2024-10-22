@@ -1,0 +1,24 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  annotations:
+    sidecar.jaegertracing.io/inject: "true"
+    prometheus.io/scrape: "true"
+    prometheus.io/path: /metrics
+    prometheus.io/port: metrics
+  name: backend-monitor
+  namespace: monitoring       
+  labels:
+    release: prometheus       
+    app: backend
+spec:
+  selector:
+    matchLabels:
+      app: backend          
+  namespaceSelector:
+    matchNames:
+      - default               
+  endpoints:
+    - port: metrics          
+      path: /metrics          
+      interval: 5s           
