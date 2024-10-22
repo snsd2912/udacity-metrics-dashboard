@@ -23,6 +23,12 @@ kubectl --namespace monitoring port-forward svc/prometheus-grafana --address 0.0
 - Navigate to localhost:3000 on localhost
 - Login with username:admin/password:prom-operator
 
+## Update scrape config
+
+kubectl port-forward -n monitoring svc/prometheus-kube-prometheus-prometheus  --address 0.0.0.0  9090:9090
+
+http://localhost:9090/targets
+
 ## Install Jaeger
 
 We will now install Jaeger Tracing to our cluster. Run the below code to create the "observability" namespace and install the Jaeger components:
