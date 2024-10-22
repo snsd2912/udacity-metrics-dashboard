@@ -49,19 +49,25 @@ The SLIs are:
 
 ## Create a Dashboard to measure our SLIs
 
-- Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period.
+- Create a dashboard to measure the uptime of the frontend and backend services. We will also want to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period.
 
 
 
 ## Tracing our Flask App
-*TODO:*  We will create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here. Also provide a (screenshot) sample Python file containing a trace and span code used to perform Jaeger traces on the backend service.
+
+- Create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here. Also provide a (screenshot) sample Python file containing a trace and span code used to perform Jaeger traces on the backend service.
+
+
 
 ## Jaeger in Dashboards
-*TODO:* Now that the trace is running, let's add the metric to our current Grafana dashboard. Once this is completed, provide a screenshot of it here.
+
+- Now that the trace is running, let's add the metric to our current Grafana dashboard.
 
 ## Report Error
-*TODO:* Using the template below, write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue also include a screenshot of the tracer span to demonstrate how we can user a tracer to locate errors easily.
 
+- write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue also include a screenshot of the tracer span to demonstrate how we can user a tracer to locate errors easily.
+
+```
 TROUBLE TICKET
 
 Name:
@@ -75,13 +81,19 @@ Affected Area:
 Severity:
 
 Description:
-
+```
 
 ## Creating SLIs and SLOs
-*TODO:* We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name four SLIs that you would use to measure the success of this SLO.
+
+- We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name four SLIs that you would use to measure the success of this SLO.
 
 ## Building KPIs for our plan
-*TODO*: Now that we have our SLIs and SLOs, create a list of 2-3 KPIs to accurately measure these metrics as well as a description of why those KPIs were chosen. We will make a dashboard for this, but first write them down here.
+
+- Create a list of 2-3 KPIs to accurately measure these metrics as well as a description of why those KPIs were chosen.
 
 ## Final Dashboard
-*TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.  
+
+- Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs.
+
+
+
