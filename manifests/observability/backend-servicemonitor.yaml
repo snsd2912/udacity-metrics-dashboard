@@ -5,7 +5,7 @@ metadata:
     sidecar.jaegertracing.io/inject: "true"
     prometheus.io/scrape: "true"
     prometheus.io/path: /metrics
-    prometheus.io/port: metrics
+    prometheus.io/port: backend
   name: backend-monitor
   namespace: monitoring       
   labels:
@@ -19,6 +19,6 @@ spec:
     matchNames:
       - default               
   endpoints:
-    - port: metrics          
+    - port: backend          
       path: /metrics          
       interval: 5s           

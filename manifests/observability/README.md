@@ -28,6 +28,8 @@ kubectl --namespace monitoring port-forward svc/prometheus-grafana --address 0.0
 helm get values prometheus --namespace monitoring --kubeconfig /etc/rancher/k3s/k3s.yaml > prometheus-values.yaml
 helm show values prometheus-community/kube-prometheus-stack --namespace monitoring --kubeconfig /etc/rancher/k3s/k3s.yaml > prometheus-default-values.yaml
 
+helm upgrade prometheus prometheus-community/kube-prometheus-stack --namespace monitoring -f prometheus-default-values.yaml   --kubeconfig /etc/rancher/k3s/k3s.yaml
+
 kubectl port-forward -n monitoring svc/prometheus-kube-prometheus-prometheus  --address 0.0.0.0  9090:9090
 
 http://localhost:9090/targets
