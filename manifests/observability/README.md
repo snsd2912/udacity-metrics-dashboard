@@ -16,6 +16,13 @@ helm install prometheus prometheus-community/kube-prometheus-stack --namespace m
 
 Following along with what you saw in the video, install Prometheus and Grafana with Helm. You may have noticed that I installed some CRDs in the video. In version 0.4.2 of the operator, it was needed. As of this update, we are on version 0.7 which no longer needs those CRDs which is why you won't see the command here any longer.
 
+- Forward port to localhost
+```
+kubectl --namespace monitoring port-forward svc/prometheus-grafana --address 0.0.0.0 3000:80
+```
+- Navigate to localhost:3000 on localhost
+- Login with username:admin/password:prom-operator
+
 ## Install Jaeger
 
 We will now install Jaeger Tracing to our cluster. Run the below code to create the "observability" namespace and install the Jaeger components:

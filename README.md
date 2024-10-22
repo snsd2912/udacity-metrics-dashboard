@@ -1,21 +1,57 @@
 ## Verify the monitoring installation
 
-*TODO:* run `kubectl` command to show the running pods and services for all components. Take a screenshot of the output and include it here to verify the installation
+### Application
+
+![pplication_resources](./answer-img/application_resources.PNG)
+
+### Monitoring
+
+![monitoring_resources](./answer-img/monitoring_resources.PNG)
+
+### Observability
+
+![observability_resources](./answer-img/observability_resources.PNG)
+
 
 ## Setup the Jaeger and Prometheus source
-*TODO:* Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana.
+
+- Expose Grafana to the internet and then setup Prometheus as a data source.
+
+![grafana_homepage](./answer-img/grafana_home.PNG)
 
 ## Create a Basic Dashboard
-*TODO:* Create a dashboard in Grafana that shows Prometheus as a source. Take a screenshot and include it here.
+
+- Create a dashboard in Grafana that shows Prometheus as a source.
+
+![grafana_prometheus](./answer-img/grafana_dashboard.PNG)
 
 ## Describe SLO/SLI
-*TODO:* Describe, in your own words, what the SLIs are, based on an SLO of *monthly uptime* and *request response time*.
 
-## Creating SLI metrics.
-*TODO:* It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs. 
+Based on an SLO of *monthly uptime* and *request response time*:
+
+1. 99.99% uptime monthly.
+2. Response time of 95% of requests is less than 200 ms.
+
+The SLIs are:
+
+1. Got 99.98% uptime in May.
+2. Response time of 96% of the requests is less than 200 ms.
+
+## Creating SLI metrics
+
+| Order | SLIs | Meaning |
+|:-----------|:------------:|------------:|
+| 1 | Uptime in a period of time | Measure health of the services |
+| 2 | Average request response time | Performance of the services |
+| 3 | Used CPU and memory | How much resources is used by the services |
+| 4 | Count of error responses in a period of time | Identify possible bugs |
+| 5 | Average recover time when a service goes down | Identify when incidents start to materially harm the business |
 
 ## Create a Dashboard to measure our SLIs
-*TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
+
+- Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period.
+
+
 
 ## Tracing our Flask App
 *TODO:*  We will create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here. Also provide a (screenshot) sample Python file containing a trace and span code used to perform Jaeger traces on the backend service.
