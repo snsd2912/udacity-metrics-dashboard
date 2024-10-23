@@ -82,26 +82,40 @@ sum(flask_http_request_total{status=~"4.."}) by (service)
 ```
 TROUBLE TICKET
 
-Name:
+Name: Sang Le
 
-Date:
+Date: 10/24/2024 00:55:09 AM
 
-Subject:
+Subject: Many 5xx errors created by Backend Service
 
-Affected Area:
+Affected Area: API Requests
 
-Severity:
+Severity: High
 
-Description:
+Description: The error logs is shown with database connection failed.
 ```
 
 ## Creating SLIs and SLOs
 
 - We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name four SLIs that you would use to measure the success of this SLO.
 
+
+| Order | SLOs | SLIs |
+|:-----------|:------------:|------------:|
+| 1 | 99.95% uptime per month | Uptime is 99.96% |
+| 2 | 99.95% response time is under 200ms | Response time under 200ms is 99.95% |
+| 3 | The percentage of successful HTTP requests (e.g., 2xx and 3xx status codes) over total requests >= 99.95% | Proportion is 99.97% |
+| 4 | The percentage of failed HTTP requests (e.g., 4xx and 5xx status codes) over total requests <= 0.05%  | Proportion is 0.03% |
+
 ## Building KPIs for our plan
 
 - Create a list of 2-3 KPIs to accurately measure these metrics as well as a description of why those KPIs were chosen.
+
+| Order | KPIs | Descriptions |
+|:-----------|:------------:|------------:|
+| 1 | Uptime | Monitors whether your application components (pods/services) are up and running continuously without interruption |
+| 2 | Latency | Ensures that the application responds to requests in a timely manner, contributing to user experience |
+| 3 | Error Rate | Tracks the number of erroneous responses, helping to monitor the reliability of the application |
 
 ## Final Dashboard
 
