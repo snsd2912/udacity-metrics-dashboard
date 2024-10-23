@@ -49,13 +49,25 @@ The SLIs are:
 
 ## Create a Dashboard to measure our SLIs
 
-- Create a dashboard to measure the uptime of the frontend and backend services. We will also want to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period.
+- Create a dashboard to measure the uptime of the frontend and backend services. We will also want to measure 40x and 50x errors. 
 
+- PromQL to create dashboard:
+    - Measure 4xx and 5xx errors:
+```
+sum(flask_http_request_total{status=~"4.."}) by (service)
+```
+    - Measure uptime for each service:
+```
+(sum(up{job=~"backend-service|frontend-service"}) by (job)) / (count(up{job=~"backend-service|frontend-service"}) by(job))
+```
 
+![grafana_dashboard](./answer-img/grafana_dashboard_2.PNG)
 
 ## Tracing our Flask App
 
-- Create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here. Also provide a (screenshot) sample Python file containing a trace and span code used to perform Jaeger traces on the backend service.
+- Create a Jaeger span to measure the processes on the backend.
+
+
 
 
 
