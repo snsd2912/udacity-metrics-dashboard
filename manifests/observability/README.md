@@ -81,11 +81,17 @@ kubectl create -f https://raw.githubusercontent.com/jaegertracing/jaeger-operato
 
 ## Install Jaeger instace
 
-- Install Jaeger instace:
+- Install Jaeger using the official document [here](https://tyk.io/docs/product-stack/tyk-gateway/advanced-configurations/distributed-tracing/open-telemetry/otel_jaeger_k8s/).
+
+- Verify:
 ```
-kubectl apply -n observability -f jaeger-instance.yaml
+kubectl get jaegers -n observability
 ```
 
+- Forward port:
+```
+kubectl port-forward -n observability  service/jaeger-all-in-one-query --address 0.0.0.0 16686:16686
+```
 
 ## Install MongoDB
 
