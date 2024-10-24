@@ -101,6 +101,12 @@ Now that the trace is running, let's add the metric to our current Grafana dashb
 
 Write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue also include a screenshot of the tracer span to demonstrate how we can user a tracer to locate errors easily.
 
+- Example request:
+```
+curl -X POST http://localhost:8081/star -H "Content-Type: application/json" -d '{"name": "Sirius", "distance": 8.6}'
+```
+
+- Ticket:
 ```
 TROUBLE TICKET
 
@@ -114,8 +120,10 @@ Affected Area: API Requests
 
 Severity: High
 
-Description: The error logs is shown with database connection failed.
+Description: The error logs is shown with database retrieval failure.
 ```
+
+![error](./answer-img/Capture.PNG)
 
 ## Creating SLIs and SLOs
 
@@ -153,3 +161,6 @@ Create a Dashboard containing graphs that capture all the metrics of your KPIs a
 
 ![kpi](./answer-img/kpi.png)
 
+- Service availability per minute: It shows the status of pods of each service. Value is from 0-1. The value is calculated by (active pods)/(total pods).
+- Total requests per minute: It shows the number of requests each service is handling per minute.
+- Error requests per minute: it shows the total number of 40x and 50x error requests per service.
