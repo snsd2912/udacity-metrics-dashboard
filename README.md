@@ -30,16 +30,15 @@ The process is summarized in the diagram below.
 
 ![observability_resources](./answer-img/observability_resources.PNG)
 
-
 ## Setup the Jaeger and Prometheus source
 
-- Expose Grafana to the internet and then setup Prometheus as a data source.
+Expose Grafana to the internet and then setup Prometheus as a data source.
 
 ![grafana_homepage](./answer-img/grafana_home.PNG)
 
 ## Create a Basic Dashboard
 
-- Create a dashboard in Grafana that shows Prometheus as a source.
+Create a dashboard in Grafana that shows Prometheus as a source.
 
 ![grafana_prometheus](./answer-img/grafana_dashboard.PNG)
 
@@ -58,7 +57,7 @@ The SLIs are:
 ## Creating SLI metrics
 
 | Order | SLIs | Meaning |
-|:-----------|:------------:|------------:|
+|:-----------|:------------|:------------|
 | 1 | Uptime in a period of time | Measure health of the services |
 | 2 | Average request response time | Performance of the services |
 | 3 | Used CPU and memory | How much resources is used by the services |
@@ -67,14 +66,15 @@ The SLIs are:
 
 ## Create a Dashboard to measure our SLIs
 
-- Create a dashboard to measure the uptime of the frontend and backend services. We will also want to measure 40x and 50x errors. 
+Create a dashboard to measure the uptime of the frontend and backend services. We will also want to measure 40x and 50x errors. 
 
 - PromQL to create dashboard:
-    - Measure 4xx and 5xx errors:
++ Measure 4xx and 5xx errors:
 ```
 sum(flask_http_request_total{status=~"4..|5.."}) by (service)
 ```
-    - Measure uptime for each service:
+
++ Measure availability for each service per minutes:
 ```
 (sum(up{job=~"backend-service|frontend-service"}) by (job)) / (count(up{job=~"backend-service|frontend-service"}) by(job))
 ```
@@ -93,13 +93,13 @@ Create a Jaeger span to measure the processes on the backend.
 
 ## Jaeger in Dashboards
 
-- Now that the trace is running, let's add the metric to our current Grafana dashboard.
+Now that the trace is running, let's add the metric to our current Grafana dashboard.
 
 ![jaeger-grafana](./answer-img/jaeger-grafana.png)
 
 ## Report Error
 
-- write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue also include a screenshot of the tracer span to demonstrate how we can user a tracer to locate errors easily.
+Write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue also include a screenshot of the tracer span to demonstrate how we can user a tracer to locate errors easily.
 
 ```
 TROUBLE TICKET
@@ -119,11 +119,10 @@ Description: The error logs is shown with database connection failed.
 
 ## Creating SLIs and SLOs
 
-- We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name four SLIs that you would use to measure the success of this SLO.
-
+We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name four SLIs that you would use to measure the success of this SLO.
 
 | Order | SLOs | SLIs |
-|:-----------|:------------:|------------:|
+|:-----------|:------------|:------------|
 | 1 | 99.95% uptime per month | Uptime is 99.96% |
 | 2 | 99.95% response time is under 200ms | Response time under 200ms is 99.95% |
 | 3 | The percentage of successful HTTP requests (e.g., 2xx and 3xx status codes) over total requests >= 99.95% | Proportion is 99.97% |
@@ -131,9 +130,9 @@ Description: The error logs is shown with database connection failed.
 
 ## Building KPIs for our plan
 
-- Create a list of 2-3 KPIs to accurately measure these metrics as well as a description of why those KPIs were chosen.
+Create a list of 2-3 KPIs to accurately measure these metrics as well as a description of why those KPIs were chosen.
 
-2. Uptime KPI
+1. Uptime KPI
 
 - 99.95% uptime per month
 - This KPI measures the availability of your application. It indicates how often your service is operational and accessible to users. A high uptime percentage is critical for user satisfaction and trust.
@@ -150,7 +149,7 @@ Description: The error logs is shown with database connection failed.
 
 ## Final Dashboard
 
-- Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs.
+Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs.
 
-
+![kpi](./answer-img/kpi.png)
 
