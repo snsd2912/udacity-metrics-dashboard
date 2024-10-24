@@ -1,0 +1,24 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  annotations:
+    sidecar.jaegertracing.io/inject: "true"
+    prometheus.io/scrape: "true"
+    prometheus.io/path: /metrics
+    prometheus.io/port: trial
+  name: trial-monitor
+  namespace: monitoring       
+  labels:
+    release: prometheus       
+    app: trial
+spec:
+  selector:
+    matchLabels:
+      app: trial          
+  namespaceSelector:
+    matchNames:
+      - default               
+  endpoints:
+    - port: trial          
+      path: /metrics          
+      interval: 15s           

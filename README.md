@@ -1,53 +1,155 @@
-**Note:** For the screenshots, you can store all of your answer images in the `answer-img` directory.
+# Cloud Native Observability
+
+In this project, you will create dashboards that use multiple graphs to monitor our sample application that is deployed on a Kubernetes cluster. You will be using Prometheus(opens in a new tab), Jaeger(opens in a new tab), and Grafana(opens in a new tab) in order to monitor, trace and visualize your experience.
+
+## Main Steps
+
+Here are the main steps you'll carry out for this project:
+
+1. Deploy the sample application in your Kubernetes cluster.
+2. Use Prometheus to monitor the various metrics of the application.
+3. Use Jaeger to perform traces on the application.
+4. Use Grafana in order to visualize these metrics in a series of graphs that can be shared with other members on your team.
+5. Document your project in a README.
+
+The process is summarized in the diagram below.
+
+![overview](./answer-img/project-overview.png)
 
 ## Verify the monitoring installation
 
-*TODO:* run `kubectl` command to show the running pods and services for all components. Take a screenshot of the output and include it here to verify the installation
+### Application
+
+![pplication_resources](./answer-img/application_resources.PNG)
+
+### Monitoring
+
+![monitoring_resources](./answer-img/monitoring_resources.PNG)
+
+### Observability
+
+![observability_resources](./answer-img/observability_resources.PNG)
 
 ## Setup the Jaeger and Prometheus source
-*TODO:* Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana.
+
+Expose Grafana to the internet and then setup Prometheus as a data source.
+
+![grafana_homepage](./answer-img/grafana_home.PNG)
 
 ## Create a Basic Dashboard
-*TODO:* Create a dashboard in Grafana that shows Prometheus as a source. Take a screenshot and include it here.
+
+Create a dashboard in Grafana that shows Prometheus as a source.
+
+![grafana_prometheus](./answer-img/grafana_dashboard.PNG)
 
 ## Describe SLO/SLI
-*TODO:* Describe, in your own words, what the SLIs are, based on an SLO of *monthly uptime* and *request response time*.
 
-## Creating SLI metrics.
-*TODO:* It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs. 
+Based on an SLO of *monthly uptime* and *request response time*:
+
+1. 99.99% uptime monthly.
+2. Response time of 95% of requests is less than 200 ms.
+
+The SLIs are:
+
+1. Got 99.98% uptime in May.
+2. Response time of 96% of the requests is less than 200 ms.
+
+## Creating SLI metrics
+
+| Order | SLIs | Meaning |
+|:-----------|:------------|:------------|
+| 1 | Uptime in a period of time | Measure health of the services |
+| 2 | Average request response time | Performance of the services |
+| 3 | Used CPU and memory | How much resources is used by the services |
+| 4 | Count of error responses in a period of time | Identify possible bugs |
+| 5 | Average recover time when a service goes down | Identify when incidents start to materially harm the business |
 
 ## Create a Dashboard to measure our SLIs
-*TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
+
+Create a dashboard to measure the uptime of the frontend and backend services. We will also want to measure 40x and 50x errors. 
+
+- PromQL to create dashboard:
++ Measure 4xx and 5xx errors:
+```
+sum(flask_http_request_total{status=~"4..|5.."}) by (service)
+```
+
++ Measure availability for each service per minutes:
+```
+(sum(up{job=~"backend-service|frontend-service"}) by (job)) / (count(up{job=~"backend-service|frontend-service"}) by(job))
+```
+
+![grafana_dashboard](./answer-img/grafana_dashboard_2.PNG)
 
 ## Tracing our Flask App
-*TODO:*  We will create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here. Also provide a (screenshot) sample Python file containing a trace and span code used to perform Jaeger traces on the backend service.
+
+Create a Jaeger span to measure the processes on the backend.
+
+- Dashboard:
+![jaeger-2](./answer-img/jaeger-2.PNG)
+
+- Process details:
+![jaeger](./answer-img/jaeger.PNG)
 
 ## Jaeger in Dashboards
-*TODO:* Now that the trace is running, let's add the metric to our current Grafana dashboard. Once this is completed, provide a screenshot of it here.
+
+Now that the trace is running, let's add the metric to our current Grafana dashboard.
+
+![jaeger-grafana](./answer-img/jaeger-grafana.png)
 
 ## Report Error
-*TODO:* Using the template below, write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue also include a screenshot of the tracer span to demonstrate how we can user a tracer to locate errors easily.
 
+Write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue also include a screenshot of the tracer span to demonstrate how we can user a tracer to locate errors easily.
+
+```
 TROUBLE TICKET
 
-Name:
+Name: Sang Le
 
-Date:
+Date: 10/24/2024 00:55:09 AM
 
-Subject:
+Subject: Many 5xx errors created by Backend Service
 
-Affected Area:
+Affected Area: API Requests
 
-Severity:
+Severity: High
 
-Description:
-
+Description: The error logs is shown with database connection failed.
+```
 
 ## Creating SLIs and SLOs
-*TODO:* We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name four SLIs that you would use to measure the success of this SLO.
+
+We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name four SLIs that you would use to measure the success of this SLO.
+
+| Order | SLOs | SLIs |
+|:-----------|:------------|:------------|
+| 1 | 99.95% uptime per month | Uptime is 99.96% |
+| 2 | 99.95% response time is under 200ms | Response time under 200ms is 99.95% |
+| 3 | The percentage of successful HTTP requests (e.g., 2xx and 3xx status codes) over total requests >= 99.95% | Proportion is 99.97% |
+| 4 | The percentage of failed HTTP requests (e.g., 4xx and 5xx status codes) over total requests <= 0.05%  | Proportion is 0.03% |
 
 ## Building KPIs for our plan
-*TODO*: Now that we have our SLIs and SLOs, create a list of 2-3 KPIs to accurately measure these metrics as well as a description of why those KPIs were chosen. We will make a dashboard for this, but first write them down here.
+
+Create a list of 2-3 KPIs to accurately measure these metrics as well as a description of why those KPIs were chosen.
+
+1. Uptime KPI
+
+- 99.95% uptime per month
+- This KPI measures the availability of your application. It indicates how often your service is operational and accessible to users. A high uptime percentage is critical for user satisfaction and trust.
+
+2. Error Rate KPI
+
+- Less than 1% of requests result in errors
+- This KPI measures the percentage of requests that fail or return an error. Keeping the error rate low is crucial for maintaining a reliable service and ensuring users can successfully interact with your application.
+
+3. Throughput KPI
+
+- Handle 1000 requests per minute
+- This KPI measures the number of requests your application can handle in a given time frame. Higher throughput indicates that your application can manage more users and traffic, which is important for scalability.
 
 ## Final Dashboard
-*TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.  
+
+Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs.
+
+![kpi](./answer-img/kpi.png)
+
