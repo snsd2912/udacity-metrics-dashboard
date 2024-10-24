@@ -1,0 +1,150 @@
+{
+    "data": [
+        {
+            "traceID": "290f4e62b7194ed8",
+            "spans": [
+                {
+                    "traceID": "290f4e62b7194ed8",
+                    "spanID": "ca6808b5ae0afa24",
+                    "flags": 1,
+                    "operationName": "my_api",
+                    "references": [],
+                    "startTime": 1729754139693697,
+                    "duration": 7334,
+                    "tags": [
+                        {
+                            "key": "sampler.type",
+                            "type": "string",
+                            "value": "const"
+                        },
+                        {
+                            "key": "sampler.param",
+                            "type": "bool",
+                            "value": true
+                        },
+                        {
+                            "key": "component",
+                            "type": "string",
+                            "value": "Flask"
+                        },
+                        {
+                            "key": "http.method",
+                            "type": "string",
+                            "value": "GET"
+                        },
+                        {
+                            "key": "http.url",
+                            "type": "string",
+                            "value": "http://localhost:8081/api"
+                        },
+                        {
+                            "key": "span.kind",
+                            "type": "string",
+                            "value": "server"
+                        },
+                        {
+                            "key": "http.status_code",
+                            "type": "int64",
+                            "value": 200
+                        },
+                        {
+                            "key": "internal.span.format",
+                            "type": "string",
+                            "value": "proto"
+                        }
+                    ],
+                    "logs": [],
+                    "processID": "p1",
+                    "warnings": null
+                },
+                {
+                    "traceID": "290f4e62b7194ed8",
+                    "spanID": "94be7a9d3ed3c869",
+                    "flags": 1,
+                    "operationName": "api-endpoint",
+                    "references": [
+                        {
+                            "refType": "CHILD_OF",
+                            "traceID": "290f4e62b7194ed8",
+                            "spanID": "ca6808b5ae0afa24"
+                        }
+                    ],
+                    "startTime": 1729754139693835,
+                    "duration": 4611,
+                    "tags": [
+                        {
+                            "key": "message",
+                            "type": "string",
+                            "value": "{'message': 'API endpoint'}"
+                        },
+                        {
+                            "key": "internal.span.format",
+                            "type": "string",
+                            "value": "proto"
+                        }
+                    ],
+                    "logs": [],
+                    "processID": "p1",
+                    "warnings": null
+                }
+            ],
+            "processes": {
+                "p1": {
+                    "serviceName": "backend",
+                    "tags": [
+                        {
+                            "key": "cluster",
+                            "type": "string",
+                            "value": "undefined"
+                        },
+                        {
+                            "key": "container.name",
+                            "type": "string",
+                            "value": "backend"
+                        },
+                        {
+                            "key": "deployment.name",
+                            "type": "string",
+                            "value": "backend-app"
+                        },
+                        {
+                            "key": "host.ip",
+                            "type": "string",
+                            "value": "10.0.0.154"
+                        },
+                        {
+                            "key": "hostname",
+                            "type": "string",
+                            "value": "backend-app-749bccfc5-88rzx"
+                        },
+                        {
+                            "key": "ip",
+                            "type": "string",
+                            "value": "10.42.0.171"
+                        },
+                        {
+                            "key": "jaeger.version",
+                            "type": "string",
+                            "value": "Python-4.8.0"
+                        },
+                        {
+                            "key": "pod.name",
+                            "type": "string",
+                            "value": "backend-app-749bccfc5-88rzx"
+                        },
+                        {
+                            "key": "pod.namespace",
+                            "type": "string",
+                            "value": "default"
+                        }
+                    ]
+                }
+            },
+            "warnings": null
+        }
+    ],
+    "total": 0,
+    "limit": 0,
+    "offset": 0,
+    "errors": null
+}

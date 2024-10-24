@@ -1,3 +1,21 @@
+# Cloud Native Observability
+
+In this project, you will create dashboards that use multiple graphs to monitor our sample application that is deployed on a Kubernetes cluster. You will be using Prometheus(opens in a new tab), Jaeger(opens in a new tab), and Grafana(opens in a new tab) in order to monitor, trace and visualize your experience.
+
+## Main Steps
+
+Here are the main steps you'll carry out for this project:
+
+1. Deploy the sample application in your Kubernetes cluster.
+2. Use Prometheus to monitor the various metrics of the application.
+3. Use Jaeger to perform traces on the application.
+4. Use Grafana in order to visualize these metrics in a series of graphs that can be shared with other members on your team.
+5. Document your project in a README.
+
+The process is summarized in the diagram below.
+
+![overview](./answer-img/project-overview.png)
+
 ## Verify the monitoring installation
 
 ### Application
@@ -54,7 +72,7 @@ The SLIs are:
 - PromQL to create dashboard:
     - Measure 4xx and 5xx errors:
 ```
-sum(flask_http_request_total{status=~"4.."}) by (service)
+sum(flask_http_request_total{status=~"4..|5.."}) by (service)
 ```
     - Measure uptime for each service:
 ```
@@ -77,7 +95,7 @@ Create a Jaeger span to measure the processes on the backend.
 
 - Now that the trace is running, let's add the metric to our current Grafana dashboard.
 
-
+![jaeger-grafana](./answer-img/jaeger-grafana.png)
 
 ## Report Error
 
@@ -115,11 +133,20 @@ Description: The error logs is shown with database connection failed.
 
 - Create a list of 2-3 KPIs to accurately measure these metrics as well as a description of why those KPIs were chosen.
 
-| Order | KPIs | Descriptions |
-|:-----------|:------------:|------------:|
-| 1 | Uptime | Monitors whether your application components (pods/services) are up and running continuously without interruption |
-| 2 | Latency | Ensures that the application responds to requests in a timely manner, contributing to user experience |
-| 3 | Error Rate | Tracks the number of erroneous responses, helping to monitor the reliability of the application |
+2. Uptime KPI
+
+- 99.95% uptime per month
+- This KPI measures the availability of your application. It indicates how often your service is operational and accessible to users. A high uptime percentage is critical for user satisfaction and trust.
+
+2. Error Rate KPI
+
+- Less than 1% of requests result in errors
+- This KPI measures the percentage of requests that fail or return an error. Keeping the error rate low is crucial for maintaining a reliable service and ensuring users can successfully interact with your application.
+
+3. Throughput KPI
+
+- Handle 1000 requests per minute
+- This KPI measures the number of requests your application can handle in a given time frame. Higher throughput indicates that your application can manage more users and traffic, which is important for scalability.
 
 ## Final Dashboard
 
