@@ -65,15 +65,19 @@ sum(flask_http_request_total{status=~"4.."}) by (service)
 
 ## Tracing our Flask App
 
-- Create a Jaeger span to measure the processes on the backend.
+Create a Jaeger span to measure the processes on the backend.
 
+- Dashboard:
+![jaeger-2](./answer-img/jaeger-2.PNG)
 
-
-
+- Process details:
+![jaeger](./answer-img/jaeger.PNG)
 
 ## Jaeger in Dashboards
 
 - Now that the trace is running, let's add the metric to our current Grafana dashboard.
+
+
 
 ## Report Error
 

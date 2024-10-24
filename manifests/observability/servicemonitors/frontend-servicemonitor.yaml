@@ -21,4 +21,4 @@ spec:
   endpoints:
     - port: frontend           # The port name of the service exposing the metrics
       path: /metrics          # The path where metrics are exposed
-      interval: 10s           # Scrape interval
+      interval: 15s           # Scrape interval

@@ -21,4 +21,4 @@ spec:
   endpoints:
     - port: trial          
       path: /metrics          
-      interval: 5s           
+      interval: 15s           
